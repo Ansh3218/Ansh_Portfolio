@@ -70,60 +70,69 @@ export default function CaseStudyCarousel() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [slidesToShow, setSlidesToShow] = useState(3); // Default desktop
+  const [isMounted, setIsMounted] = useState(false);
 
-  // Responsive slides count
-  const slidesToShow = {
-    base: 1, // mobile
-    md: 2, // tablet
-    lg: 3, // desktop
-  };
+  // Handle responsive slides on mount and resize
+  useEffect(() => {
+    setIsMounted(true);
+
+    const updateSlidesToShow = () => {
+      if (window.innerWidth >= 1024) {
+        setSlidesToShow(3); // desktop
+      } else if (window.innerWidth >= 768) {
+        setSlidesToShow(2); // tablet
+      } else {
+        setSlidesToShow(1); // mobile
+      }
+    };
+
+    // Initial call
+    updateSlidesToShow();
+
+    // Add resize listener
+    window.addEventListener("resize", updateSlidesToShow);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", updateSlidesToShow);
+  }, []);
 
   const next = () => {
     setCurrentIndex((prev) => {
-      const maxIndex = caseStudies.length - getSlidesToShow();
+      const maxIndex = caseStudies.length - slidesToShow;
       return prev >= maxIndex ? 0 : prev + 1;
     });
   };
 
   const prev = () => {
     setCurrentIndex((prev) =>
-      prev <= 0 ? caseStudies.length - getSlidesToShow() : prev - 1
+      prev <= 0 ? caseStudies.length - slidesToShow : prev - 1
     );
   };
 
-  // Helper to get current slides count based on screen
-  const getSlidesToShow = () => {
-    if (typeof window === "undefined") return slidesToShow.base;
-    if (window.innerWidth >= 1024) return slidesToShow.lg; // lg+
-    if (window.innerWidth >= 768) return slidesToShow.md; // md+
-    return slidesToShow.base;
+  // Calculate slide width percentage
+  const getSlideWidth = () => {
+    return `${100 / slidesToShow}%`;
   };
 
-  // Better way: Use percentage width instead of fixed 100%
-  const getSlideWidth = () => {
-    if (typeof window === "undefined") return "100%";
-    if (window.innerWidth >= 1024) return "33.333%"; // 3 cards
-    if (window.innerWidth >= 768) return "50%"; // 2 cards
-    return "100%"; // 1 card
-  };
+  // Don't render until mounted (avoid hydration mismatch)
+  if (!isMounted) {
+    return (
+      <div className="min-h-screen text-white py-16 px-4 flex items-center justify-center">
+        <div className="animate-pulse">Loading...</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen text-white py-16 px-4">
+    <div className="min-h-screen max-sm:min-h-[30vh] text-white py-16 px-4">
       <div className="max-w-[88rem] mx-auto">
         {/* Carousel */}
         <div className="overflow-hidden">
           <div
             className="flex transition-transform duration-700 ease-in-out"
             style={{
-              transform: `translateX(-${
-                currentIndex *
-                (100 /
-                  (window.innerWidth >= 1024
-                    ? 3
-                    : window.innerWidth >= 768
-                    ? 2
-                    : 1))
-              }%)`,
+              transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)`,
             }}
           >
             {caseStudies.map((study, index) => (
@@ -170,7 +179,7 @@ export default function CaseStudyCarousel() {
 
           <div className="flex gap-3">
             {Array.from({
-              length: caseStudies.length - getSlidesToShow() + 1,
+              length: caseStudies.length - slidesToShow + 1,
             }).map((_, i) => (
               <button
                 key={i}

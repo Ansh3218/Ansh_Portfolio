@@ -14,7 +14,7 @@ const AboutDescription = () => {
   ];
 
   return (
-    <div className="py-16 sm:py-24 md:py-32">
+    <div className="py-16 max-sm:py-24 max-md:py-20 mt-[5rem] max-sm:mt-0">
       <div className="w-full text-[#b2b2b2] flex flex-col lg:flex-row justify-start gap-8 lg:gap-0">
         {/* Text Content Section */}
         <div className="intro-desc flex flex-col pt-6 sm:pt-10 px-4 sm:px-6 md:px-8 lg:px-12 w-full lg:w-1/2">
@@ -23,13 +23,17 @@ const AboutDescription = () => {
               Meet Ansh
             </h1>
             <p className="w-full max-w-[600px] text-sm sm:text-base md:text-lg leading-relaxed">
-              I'm Ansh, a dedicated Full-Stack Developer from India, focused on
-              building fast, scalable, and user-centric digital experiences. I
-              combine strong backend engineering with modern front-end design to
-              create applications that are both powerful and intuitive. With a
-              balanced approach of clean architecture, performance-driven
-              development, and strategic problem-solving, I transform ideas into
-              reliable, future-ready products.
+              First of all, thank you for giving me this opportunity to
+              introduce myself. My name is Ansh Chauhan. I am from India. I am a
+              Full-Stack Developer with strong skills in HTML, CSS, JavaScript,
+              React.js, Next.js, Node.js, Express.js, MongoDB, SQL, and UI/UX
+              tools like Figma. I’m a self-motivated and hardworking person with
+              good communication skills. I learn quickly and adapt easily to new
+              technologies. My short-term goal is to work in a reputed
+              organization where I can refine my skills and contribute to
+              meaningful projects. My long-term goal is to achieve a responsible
+              position in the tech industry and help the company grow while
+              growing myself as well. That’s all about me. Thank you very much.
             </p>
           </div>
 
@@ -48,7 +52,7 @@ const AboutDescription = () => {
 
         {/* Image Section */}
         <div className="image w-full lg:w-1/2 h-auto flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-0">
-          <div className="w-full max-w-[400px] sm:max-w-[500px] md:max-w-[580px] lg:max-w-[640px] aspect-square">
+          <div className="w-full max-w-[400px] sm:max-w-[500px] md:max-w-[580px] lg:max-w-[620px] aspect-square">
             <PixelTransition
               firstContent={
                 <img

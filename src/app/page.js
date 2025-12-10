@@ -18,7 +18,7 @@ export default function Home() {
         <section
           data-section="/about"
           id="about"
-          className="min-h-screen bg-black w-full rounded-t-[5rem] max-md:rounded-t-[3rem] max-sm:rounded-t-5xl"
+          className="min-h-screen bg-black w-full rounded-t-[5rem] max-md:rounded-t-[3rem] max-sm:rounded-t-4xl"
         >
           <About />
         </section>

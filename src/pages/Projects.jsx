@@ -13,11 +13,12 @@ const Projects = () => {
           <div className="w-full p-[8vw] pl-[8vw] font-sans flex flex-col gap-y-5">
             <TextReveal>
               <div className="text-black flex items-center gap-x-2 text-left">
-                <p className="w-2.5 h-2.5 bg-black rounded-full"></p>
+                <span className="w-2.5 h-2.5 bg-black rounded-full"></span>
+                <p className="max-sm:mt-[10rem]"></p>
                 My Projects
               </div>
             </TextReveal>
-            <div className="w-[40%]">
+            <div className="w-[40%] max-sm:w-[100%]">
               <p className="text-3xl pb-5">
                 Crafting projects that speak louder than words.
               </p>

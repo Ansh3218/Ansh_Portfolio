@@ -33,24 +33,26 @@ export default function FAQ() {
   const [open, setOpen] = useState(null);
 
   return (
-    <div className="w-full bg-black text-white px-[5rem] py-20">
-      {/* Top Head Section */}
-      <div className="flex justify-between items-start gap-20">
-        {/* Left Content */}
-        <div className="w-1/2">
-          <span className="px-4 py-1 rounded-full bg-[#0F0F0F] border border-white/10 inline-flex items-center gap-2 text-sm">
+    <div className="w-full bg-black text-white px-[5rem] py-20 max-[1024px]:px-[3rem] max-[640px]:px-6 max-[640px]:py-14">
+      {/* Top Section */}
+      <div className="flex justify-between items-start gap-20 max-[1024px]:flex-col max-[1024px]:gap-12">
+        {/* LEFT SIDE */}
+        <div className="w-1/2 max-[1024px]:w-full">
+          <span className="px-4 py-1 rounded-full bg-[#0F0F0F] border border-white/10 text-sm inline-flex items-center gap-2">
             <span className="text-lg">◎</span> FAQ'S
           </span>
 
-          <h1 className="text-[6rem] font-medium leading-[1] mt-6">Answers</h1>
+          <h1 className="text-[6rem] font-medium leading-[1] mt-6 max-[1024px]:text-[4rem] max-[640px]:text-[2.8rem]">
+            Answers
+          </h1>
 
-          <p className="text-gray-400 text-lg mt-5">
+          <p className="text-gray-400 text-lg mt-5 max-[640px]:text-base">
             Find answers to common questions about my design process, services
             etc...
           </p>
 
-          {/* Image Box */}
-          <div className="w-full h-[470px] bg-[#1B1B1B] rounded-3xl mt-10 overflow-hidden">
+          {/* IMAGE BOX */}
+          <div className="w-full h-[470px] bg-[#1B1B1B] rounded-3xl mt-10 overflow-hidden max-[1024px]:h-[380px] max-[640px]:h-[250px]">
             <img
               src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?q=80&w=1200"
               className="w-full h-full object-cover grayscale"
@@ -59,16 +61,17 @@ export default function FAQ() {
           </div>
         </div>
 
-        {/* Right FAQ List */}
-        <div className="w-1/2 flex flex-col gap-4">
+        {/* RIGHT SIDE FAQ LIST */}
+        <div className="w-1/2 flex flex-col gap-4 max-[1024px]:w-full">
           {faqs.map((item, i) => (
             <div
               key={i}
-              className="bg-[#0F0F0F] border border-white/10 rounded-2xl p-6 cursor-pointer transition-all"
+              className="bg-[#0F0F0F] border border-white/10 rounded-2xl p-6 cursor-pointer transition-all max-[640px]:p-4"
               onClick={() => setOpen(open === i ? null : i)}
             >
               <div className="flex justify-between items-center">
-                <h3 className="text-lg">{item.q}</h3>
+                <h3 className="text-lg max-[640px]:text-base">{item.q}</h3>
+
                 <Plus
                   className={`w-6 h-6 transition-transform ${
                     open === i ? "rotate-45" : ""
@@ -78,7 +81,7 @@ export default function FAQ() {
 
               {/* Dropdown */}
               {open === i && (
-                <p className="text-gray-400 mt-4 text-sm leading-relaxed">
+                <p className="text-gray-400 mt-4 text-sm leading-relaxed max-[640px]:text-[13px]">
                   {item.a}
                 </p>
               )}

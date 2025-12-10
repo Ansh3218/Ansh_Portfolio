@@ -4,7 +4,7 @@ import TextReveal from "@/animations/TextAnimations/TextRevel";
 const Hero = () => {
   return (
     <div className="relative w-full h-auto overflow-x-hidden">
-      <div className="relative text-[10.5vw] leading-[9vw] pt-[1.5rem] uppercase text-[#E6E6E6] text-center font-[arial] flex flex-col items-center px-6 max-lg:text-[13vw] max-lg:leading-[12vw] max-sm:text-[13vw] max-sm:leading-[15vw] max-md:pt-[10rem] max-sm:text-nowrap">
+      <div className="relative max-sm:h-[20%] text-[10.5vw] leading-[9vw] pt-[1.5rem] uppercase text-[#E6E6E6] text-center font-[arial] flex flex-col items-center px-6 max-lg:text-[13vw] max-lg:leading-[12vw] max-sm:text-[16vw] max-sm:leading-[18vw] max-sm:pt-[15rem] max-md:pt-[10rem] max-sm:text-nowrap">
         <TextReveal>
           <div>
             The <span className="text-[#6b6b6b]">vision</span>

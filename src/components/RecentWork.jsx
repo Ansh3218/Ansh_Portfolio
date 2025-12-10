@@ -8,7 +8,7 @@ const RecentWork = () => {
     <>
       <div className="w-full h-auto min-h-screen">
         <div className="w-full">
-          <h1 className="pl-[3rem] pb-[3rem] pt-[10rem] text-3xl font-[font] text-gray-700 flex items-center gap-x-3">
+          <h1 className="pl-[3rem] max-sm:pl-[2rem] max-sm:pb-[0rem] max-sm:pt-[8rem] pb-[3rem] pt-[10rem] text-3xl font-[font] text-gray-700 flex items-center gap-x-3">
             Recent Works <IoArrowDownCircleOutline />
           </h1>
         </div>

@@ -100,7 +100,7 @@ const Navbar = () => {
         </button>
 
         {/* Menu Links */}
-        <div className="flex flex-col pl-[5rem] justify-center h-full gap-8 uppercase text-7xl font-medium">
+        <div className="flex flex-col max-sm:pl-[2rem] pl-[5rem] justify-center h-full gap-8 uppercase text-7xl font-medium">
           {navLinks.map((item, index) => (
             <Link
               key={index}
