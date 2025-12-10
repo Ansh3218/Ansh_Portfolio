@@ -1,7 +1,7 @@
 "use client";
 import TextReveal from "@/animations/TextAnimations/TextRevel";
 import { AnimatedButton } from "@/components/Buttons";
-import ProjectCards from "@/components/ProjectCards";
+import { ProjectCards } from "@/components/ProjectCards";
 
 import React from "react";
 

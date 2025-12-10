@@ -10,10 +10,12 @@ const GridMotion = ({ items = [], gradientColor = "black" }) => {
   const { activeSection } = useTheme(); // ✅ Get active section from context
 
   const themes = {
-    "/": { bg: "black", box: "#212121" },
-    "/about": { bg: "gray", box: "#212121" },
+    "/": { bg: "gray", box: "#212121" },
+    "/about": { bg: "black", box: "#212121" },
     "/projects": { bg: "white", box: "#E6E6E6" },
+    "/services": { bg: "black", box: "#212121" },
     "/contact": { bg: "#E6E6E6", box: "#212121" },
+    "/footer": { bg: "black", box: "#212121" },
   };
 
   const theme = themes[activeSection] || themes["/"]; // ✅ Use activeSection instead of pathname

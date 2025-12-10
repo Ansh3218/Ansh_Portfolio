@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import "../styles/globals.css";
 import Navbar from "@/components/Navbar";
 import PageTransition from "@/components/PageTransition";
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
             <PageTransition>
               <Navbar />
               {children}
+              {/* <Footer /> */}
             </PageTransition>
           </div>
         </ThemeProvider>

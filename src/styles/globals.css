@@ -123,17 +123,7 @@
 *::-webkit-scrollbar {
   scrollbar-width: none;
 }
-/* 
-.transition-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100svh;
-  display: flex;
-  pointer-events: none;
-  z-index: 30;
-} */
+
 .block {
   flex: 1;
   height: 100%;
@@ -141,29 +131,6 @@
   transform: scaleX(0);
   transform-origin: left;
 }
-/* }
-.logo-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100svh;
-  z-index: 31;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #222;
-  pointer-events: none;
-  opacity: 0;
-}
-.logo-container {
-  width: 200px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-} */
 
 @keyframes blob-expand {
   0% {
@@ -179,7 +146,109 @@
     opacity: 0;
   }
 }
-
 .animate-blob-expand {
   animation: blob-expand 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Shiny Text Css */
+.shiny-text {
+  color: #cfcfcfa4; /* Adjust this color to change intensity/style */
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: inline-block;
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: -100%;
+  }
+}
+
+.shiny-text.disabled {
+  animation: none;
+}
+/* Seamless Infinite Loop Animation */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-33.333%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* All rows same duration for synchronized movement */
+.animate-marquee-left,
+.animate-marquee-right {
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.animate-marquee-left {
+  animation-name: marquee-left;
+}
+
+.animate-marquee-right {
+  animation-name: marquee-right;
+}
+
+/* Mobile fast speed - same duration for all rows */
+@media (max-width: 680px) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation-duration: 5s;
+  }
+}
+
+/* Pause on Hover */
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+/* Footer  */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

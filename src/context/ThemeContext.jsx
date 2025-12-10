@@ -10,29 +10,41 @@ export const ThemeProvider = ({ children }) => {
   const [activeSection, setActiveSection] = useState("/");
   const lastSectionRef = useRef("/");
   const transitionTimeoutRef = useRef(null);
-  const pathname = usePathname(); // Get current route
+  const observerRef = useRef(null);
+  const pathname = usePathname();
 
   // SECTION THEMES
   const navThemes = {
     "/": "bg-[#979797] text-black",
     "/about": "bg-[#212121] text-white",
     "/projects": "bg-white text-black",
-    "/contact": "bg-[#212121] text-[#E6E6E6]",
+    "/services": "bg-[#212121] text-[#E6E6E6]",
+    "/contact": "bg-white text-black",
   };
 
   const logoThemes = {
     "/": "invert-0",
     "/about": "invert",
     "/projects": "invert-0",
-    "/contact": "invert",
+    "/services": "invert",
+    "/contact": "invert-0",
+  };
+
+  // HELPER: Get theme based on pathname
+  const getThemeForPath = (path) => {
+    if (path.startsWith("/projects/")) {
+      return "/projects";
+    }
+    return path;
   };
 
   // UPDATE THEME ON ROUTE CHANGE
   useEffect(() => {
-    if (pathname && navThemes[pathname]) {
-      setActiveSection(pathname);
-      lastSectionRef.current = pathname;
-      // Reset scroll to top on route change
+    const themeKey = getThemeForPath(pathname);
+
+    if (navThemes[themeKey]) {
+      setActiveSection(themeKey);
+      lastSectionRef.current = themeKey;
       window.scrollTo(0, 0);
     }
   }, [pathname]);
@@ -47,58 +59,78 @@ export const ThemeProvider = ({ children }) => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // INTERSECTION OBSERVER - DEBOUNCED & STABLE
+  // INTERSECTION OBSERVER - FIXED FOR ROUTE CHANGES
   useEffect(() => {
-    const sections = document.querySelectorAll("section[data-section]");
+    // Cleanup previous observer
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+      observerRef.current = null;
+    }
 
-    if (sections.length === 0) return;
+    // Setup observer with delay for DOM readiness
+    const setupObserver = () => {
+      const sections = document.querySelectorAll("section[data-section]");
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Clear existing timeout
-        if (transitionTimeoutRef.current) {
-          clearTimeout(transitionTimeoutRef.current);
-        }
-
-        // Find the most visible section
-        let maxVisibility = 0;
-        let mostVisibleSection = null;
-
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > maxVisibility) {
-            maxVisibility = entry.intersectionRatio;
-            mostVisibleSection = entry.target.getAttribute("data-section");
-          }
-        });
-
-        // Only update if we have a clear winner and it's different
-        if (
-          mostVisibleSection &&
-          mostVisibleSection !== lastSectionRef.current
-        ) {
-          // Debounce the update
-          transitionTimeoutRef.current = setTimeout(() => {
-            lastSectionRef.current = mostVisibleSection;
-            setActiveSection(mostVisibleSection);
-          }, 100); // 100ms debounce
-        }
-      },
-      {
-        threshold: [0.3, 0.5, 0.7], // Reduced thresholds for stability
-        rootMargin: "-15% 0px -15% 0px", // Increased margin for better detection
+      if (sections.length === 0) {
+        console.log("No sections found, retrying...");
+        return;
       }
-    );
 
-    // Observe all sections
-    sections.forEach((section) => observer.observe(section));
+      console.log(`Found ${sections.length} sections`);
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (transitionTimeoutRef.current) {
+            clearTimeout(transitionTimeoutRef.current);
+          }
+
+          let maxVisibility = 0;
+          let mostVisibleSection = null;
+
+          entries.forEach((entry) => {
+            if (
+              entry.isIntersecting &&
+              entry.intersectionRatio > maxVisibility
+            ) {
+              maxVisibility = entry.intersectionRatio;
+              mostVisibleSection = entry.target.getAttribute("data-section");
+            }
+          });
+
+          if (
+            mostVisibleSection &&
+            mostVisibleSection !== lastSectionRef.current
+          ) {
+            transitionTimeoutRef.current = setTimeout(() => {
+              lastSectionRef.current = mostVisibleSection;
+              setActiveSection(mostVisibleSection);
+              console.log("Active section changed to:", mostVisibleSection);
+            }, 100);
+          }
+        },
+        {
+          threshold: [0.3, 0.5, 0.7],
+          rootMargin: "-15% 0px -15% 0px",
+        }
+      );
+
+      sections.forEach((section) => observer.observe(section));
+      observerRef.current = observer;
+    };
+
+    // Wait for DOM to be ready
+    const timeoutId = setTimeout(setupObserver, 150);
 
     return () => {
+      clearTimeout(timeoutId);
       if (transitionTimeoutRef.current) {
         clearTimeout(transitionTimeoutRef.current);
       }
-      sections.forEach((section) => observer.unobserve(section));
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
     };
-  }, []);
+  }, [pathname]);
 
   const value = {
     isScrolled,

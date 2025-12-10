@@ -3,9 +3,9 @@ import React from "react";
 
 const page = () => {
   return (
-    <div>
+    <section data-section="/projects" className="min-h-screen">
       <Projects />
-    </div>
+    </section>
   );
 };
 

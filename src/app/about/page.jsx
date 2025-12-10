@@ -3,9 +3,9 @@ import About from "@/pages/About";
 const page = () => {
   return (
     <>
-      <div>
+      <section data-section="/about" className="min-h-screen">
         <About />
-      </div>
+      </section>
     </>
   );
 };
