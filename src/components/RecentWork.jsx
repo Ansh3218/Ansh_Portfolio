@@ -1,19 +1,21 @@
 import React from "react";
-import ProjectCards from "./ProjectCards";
 import { IoArrowDownCircleOutline } from "react-icons/io5";
-import MiniProjectCards from "./ProjectCards";
+import HomePageCarousel from "./HomePageCards";
+import ScrollTextReveal from "./ScrollTextReveal";
 
 const RecentWork = () => {
   return (
     <>
       <div className="w-full h-auto min-h-screen">
         <div className="w-full">
-          <h1 className="pl-[3rem] max-sm:pl-[2rem] max-sm:pb-[0rem] max-sm:pt-[8rem] pb-[3rem] pt-[10rem] text-3xl font-[font] text-gray-700 flex items-center gap-x-3">
-            Recent Works <IoArrowDownCircleOutline />
-          </h1>
+          <ScrollTextReveal triggerPercent={70} stagger={2}>
+            <h1 className="pl-[5rem] max-sm:pl-[2rem] max-sm:pb-[0rem] max-sm:pt-[8rem] pb-[3rem] pt-[10rem] text-3xl font-[font] text-gray-700 flex items-center gap-x-3">
+              Recent Works <IoArrowDownCircleOutline />
+            </h1>
+          </ScrollTextReveal>
         </div>
         <div className="">
-          <MiniProjectCards />
+          <HomePageCarousel />
         </div>
       </div>
     </>

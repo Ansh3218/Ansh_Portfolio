@@ -1,30 +1,28 @@
 export const projects = [
   {
     slug: "ecommerce-website",
-    name: "E-commerce Website",
-    shortDesc: "A modern full-stack e-commerce platform.",
-    image: "/images/Project/project1.avif",
+    name: "K72",
+    shortDesc:
+      "A modern frontend project built with React.js, Tailwind CSS, and GSAP animations for smooth, interactive user experiences.",
+    image: "/images/Project/2.png",
+    live: "https://lnkd.in/gDXqqRCq",
 
-    client: "iktaworks.co",
-    services: "Product Design",
-    timeline: "2 weeks",
+    client: "No",
+    services: "Frontend Development",
+    timeline: "6 day",
 
-    showcaseImage: "/images/Project/project1.avif",
-    showcaseComponent: "EcommerceShowcase", // Component Name
-
-    technologies: ["React", "Node.js", "MongoDB"],
+    technologies: ["React.js", "Tailwind.css", "Gsap", "Framer Motion"],
 
     description: `
-    This is a full-stack e-commerce application with
-    dynamic products, cart system, payment system,
-    admin dashboard and responsive UI.
+    A fully responsive and animation-rich frontend project crafted using React.js, Tailwind CSS, and GSAP. The interface features smooth transitions, scroll-based animations, and an immersive user experience. Designed with a clean UI, modular React components, and production-ready Tailwind styles to ensure high performance and seamless interactivity across all devices."      
     `,
 
-    gallery: ["/images/Project/project1.avif", "/images/Project/project1.avif"],
+    gallery: ["/images/Project/1.png", "/images/Project/4.png"],
   },
+
   {
-    slug: "ecommerce-website",
-    name: "E-commerce Website",
+    slug: "portfolio-redesign",
+    name: "Portfolio Redesign",
     shortDesc: "A modern full-stack e-commerce platform.",
     image: "/images/Project/project2.avif",
 
@@ -32,8 +30,8 @@ export const projects = [
     services: "Product Design",
     timeline: "2 weeks",
 
-    showcaseImage: "/images/Project/project1.avif",
-    showcaseComponent: "EcommerceShowcase", // Component Name
+    showcaseImage: "/images/Project/project2.avif",
+    showcaseComponent: "EcommerceShowcase",
 
     technologies: ["React", "Node.js", "MongoDB"],
 
@@ -46,8 +44,8 @@ export const projects = [
     gallery: ["/images/Project/project2.avif", "/images/Project/project2.avif"],
   },
   {
-    slug: "ecommerce-website",
-    name: "E-commerce Website",
+    slug: "brand-identity",
+    name: "Brand Identity",
     shortDesc: "A modern full-stack e-commerce platform.",
     image: "/images/Project/project3.avif",
 
@@ -55,8 +53,8 @@ export const projects = [
     services: "Product Design",
     timeline: "2 weeks",
 
-    showcaseImage: "/images/Project/project1.avif",
-    showcaseComponent: "EcommerceShowcase", // Component Name
+    showcaseImage: "/images/Project/project3.avif",
+    showcaseComponent: "EcommerceShowcase",
 
     technologies: ["React", "Node.js", "MongoDB"],
 

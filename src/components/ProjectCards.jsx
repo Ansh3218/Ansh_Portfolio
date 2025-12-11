@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Link from "next/link";
@@ -9,15 +8,15 @@ import { projects } from "@/data/Projects";
 export const ProjectCards = () => {
   return (
     <div className="w-full min-h-screen py-12 px-6 lg:px-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-[88rem] mx-auto">
         {projects.map((project, idx) => (
           <Link href={`/projects/${project.slug}`} key={idx} className="w-full">
-            <div className="relative group shadow-2xl bg-white/10 backdrop-blur-sm rounded-2xl transition-all duration-300 w-full h-[35vw] md:h-[38vw] lg:h-[35vw] overflow-hidden cursor-pointer flex items-end justify-center flex-col hover:shadow-none hover:backdrop-blur-none">
+            <div className="relative group shadow-2xl bg-white/10 grayscale hover:grayscale-0 backdrop-blur-sm rounded-2xl transition-all duration-300 w-full h-[35vw] md:h-[38vw] lg:h-[35vw] overflow-hidden cursor-pointer flex items-end justify-center flex-col hover:shadow-none hover:backdrop-blur-none">
               {/* IMAGE - TERA ORIGINAL EFFECT */}
               <img
                 src={project.image}
                 alt={project.name}
-                className="w-full h-full object-cover rounded-2xl duration-700 transform scale-90 group-hover:scale-100"
+                className="w-full h-full object-cover rounded-2xl duration-700 transform scale-95 group-hover:scale-100"
               />
 
               {/* TEXT - BILKUL TERA WALA */}
@@ -34,173 +33,3 @@ export const ProjectCards = () => {
     </div>
   );
 };
-
-export default function CaseStudyCarousel() {
-  const caseStudies = [
-    {
-      image:
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=900&fit=crop",
-      title: "Luxury Packaging",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&h=900&fit=crop",
-      title: "Product Design",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1591085686350-798c0f9faa7f?w=800&h=900&fit=crop",
-      title: "Brand Identity",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?w=800&h=900&fit=crop",
-      title: "Cosmetic Design",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=900&fit=crop",
-      title: "Luxury Packaging 2",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&h=900&fit=crop",
-      title: "Product Design 2",
-    },
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [slidesToShow, setSlidesToShow] = useState(3); // Default desktop
-  const [isMounted, setIsMounted] = useState(false);
-
-  // Handle responsive slides on mount and resize
-  useEffect(() => {
-    setIsMounted(true);
-
-    const updateSlidesToShow = () => {
-      if (window.innerWidth >= 1024) {
-        setSlidesToShow(3); // desktop
-      } else if (window.innerWidth >= 768) {
-        setSlidesToShow(2); // tablet
-      } else {
-        setSlidesToShow(1); // mobile
-      }
-    };
-
-    // Initial call
-    updateSlidesToShow();
-
-    // Add resize listener
-    window.addEventListener("resize", updateSlidesToShow);
-
-    // Cleanup
-    return () => window.removeEventListener("resize", updateSlidesToShow);
-  }, []);
-
-  const next = () => {
-    setCurrentIndex((prev) => {
-      const maxIndex = caseStudies.length - slidesToShow;
-      return prev >= maxIndex ? 0 : prev + 1;
-    });
-  };
-
-  const prev = () => {
-    setCurrentIndex((prev) =>
-      prev <= 0 ? caseStudies.length - slidesToShow : prev - 1
-    );
-  };
-
-  // Calculate slide width percentage
-  const getSlideWidth = () => {
-    return `${100 / slidesToShow}%`;
-  };
-
-  // Don't render until mounted (avoid hydration mismatch)
-  if (!isMounted) {
-    return (
-      <div className="min-h-screen text-white py-16 px-4 flex items-center justify-center">
-        <div className="animate-pulse">Loading...</div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen max-sm:min-h-[30vh] text-white py-16 px-4">
-      <div className="max-w-[88rem] mx-auto">
-        {/* Carousel */}
-        <div className="overflow-hidden">
-          <div
-            className="flex transition-transform duration-700 ease-in-out"
-            style={{
-              transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)`,
-            }}
-          >
-            {caseStudies.map((study, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 px-4"
-                style={{ width: getSlideWidth() }}
-              >
-                <div className="w-full">
-                  <div className="relative group cursor-pointer aspect-square rounded-2xl overflow-hidden shadow-2xl">
-                    <img
-                      src={study.image}
-                      alt={study.title}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <button className="w-full px-6 py-4 bg-white/10 backdrop-blur-md border border-white/30 rounded-full text-white flex items-center justify-center gap-2 hover:bg-white/20 transition-all">
-                        <span className="text-sm font-light">
-                          View Casestudy
-                        </span>
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                  <h3 className="mt-4 text-center text-lg font-light">
-                    {study.title}
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Navigation */}
-        <div className="flex justify-center items-center gap-8 mt-6">
-          <button
-            onClick={prev}
-            className="w-14 h-14 bg-black/85 backdrop-blur border border-black/30 rounded-full flex items-center justify-center hover:bg-black cursor-pointer transition-all duration-300"
-          >
-            <ChevronRight className="w-7 h-7 rotate-180" />
-          </button>
-
-          <div className="flex gap-3">
-            {Array.from({
-              length: caseStudies.length - slidesToShow + 1,
-            }).map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentIndex(i)}
-                className={`h-2 rounded-full transition-all ${
-                  i === currentIndex
-                    ? "w-10 bg-black"
-                    : "w-2 bg-black/85 hover:bg-black/50 cursor-pointer"
-                }`}
-              />
-            ))}
-          </div>
-
-          <button
-            onClick={next}
-            className="w-14 h-14 bg-black/85 backdrop-blur border border-black/30 rounded-full flex items-center justify-center hover:bg-black cursor-pointer transition-all duration-300"
-          >
-            <ChevronRight className="w-7 h-7" />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}

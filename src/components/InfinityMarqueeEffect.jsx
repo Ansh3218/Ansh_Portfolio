@@ -19,6 +19,7 @@ import {
   BoxSelect,
   Layers,
 } from "lucide-react";
+import ScrollTextReveal from "./ScrollTextReveal";
 
 function MarqueeRow({ items, direction = "left" }) {
   return (
@@ -74,7 +75,9 @@ export default function InfiniteMarqueeEffect() {
 
   return (
     <div>
-      <h1 className="text-center text-6xl text-[#B2B2B2] py-10">Skills</h1>
+      <ScrollTextReveal triggerPercent={90} stagger={2}>
+        <h1 className="text-center text-6xl text-[#B2B2B2] py-10">Skills</h1>
+      </ScrollTextReveal>
 
       <div className="w-full mt-20 flex flex-col items-center justify-center gap-10 pb-10">
         {/* 🖥 DESKTOP (680px up) → only 2 rows */}

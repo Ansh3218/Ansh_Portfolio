@@ -11,6 +11,7 @@ import {
 } from "react-icons/tb";
 import { AnimatedButton } from "./Buttons";
 import Link from "next/link";
+import ScrollTextReveal from "./ScrollTextReveal";
 
 export default function ServicesPage() {
   return (
@@ -20,15 +21,19 @@ export default function ServicesPage() {
         {/* Left Content */}
         <div className="space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12">
           {/* Heading */}
-          <h1 className="text-6xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-[Poppins]">
-            Services
-          </h1>
+          <ScrollTextReveal triggerPercent={70} stagger={2}>
+            <h1 className="text-6xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-[Poppins]">
+              Services
+            </h1>
+          </ScrollTextReveal>
 
           {/* Description */}
-          <p className="text-base sm:text-lg md:text-xl leading-relaxed max-w-full lg:max-w-xl">
-            Helping businesses grow with modern web & app solutions that are
-            fast, scalable, and beautifully designed
-          </p>
+          <ScrollTextReveal triggerPercent={80} stagger={2}>
+            <p className="text-base sm:text-lg md:text-xl leading-relaxed max-w-full lg:max-w-xl">
+              Helping businesses grow with modern web & app solutions that are
+              fast, scalable, and beautifully designed
+            </p>
+          </ScrollTextReveal>
 
           {/* Service Tags */}
           <div className="service border-t-2 border-[#484848] my-4 sm:my-5 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-x-4 sm:gap-y-6 md:gap-x-5 md:gap-y-8 lg:gap-x-5 lg:gap-y-10 pt-8 sm:pt-10 md:pt-12 lg:pt-14 font-medium">
@@ -154,7 +159,7 @@ export const ServiceDetails = () => {
     {
       stats: true,
       data: [
-        { count: "40+", label: "Projects completed." },
+        { count: "3+", label: "Projects completed." },
         { count: "98%", label: "Client satisfaction rate." },
         { count: "11+ mo", label: "Experience in development." },
       ],

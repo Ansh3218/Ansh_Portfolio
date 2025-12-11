@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Plus } from "lucide-react";
+import ScrollTextReveal from "./ScrollTextReveal";
 
 export default function FAQ() {
   const faqs = [
@@ -41,15 +42,18 @@ export default function FAQ() {
           <span className="px-4 py-1 rounded-full bg-[#0F0F0F] border border-white/10 text-sm inline-flex items-center gap-2">
             <span className="text-lg">◎</span> FAQ'S
           </span>
+          <ScrollTextReveal triggerPercent={90} stagger={2}>
+            <h1 className="text-[6rem] font-medium leading-[1] mt-6 max-[1024px]:text-[4rem] max-[640px]:text-[2.8rem]">
+              Answers
+            </h1>
+          </ScrollTextReveal>
 
-          <h1 className="text-[6rem] font-medium leading-[1] mt-6 max-[1024px]:text-[4rem] max-[640px]:text-[2.8rem]">
-            Answers
-          </h1>
-
-          <p className="text-gray-400 text-lg mt-5 max-[640px]:text-base">
-            Find answers to common questions about my design process, services
-            etc...
-          </p>
+          <ScrollTextReveal triggerPercent={80} stagger={2}>
+            <p className="text-gray-400 text-lg mt-5 max-[640px]:text-base">
+              Find answers to common questions about my design process, services
+              etc...
+            </p>
+          </ScrollTextReveal>
 
           {/* IMAGE BOX */}
           <div className="w-full h-[470px] bg-[#1B1B1B] rounded-3xl mt-10 overflow-hidden max-[1024px]:h-[380px] max-[640px]:h-[250px]">

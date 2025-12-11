@@ -2,6 +2,8 @@ import React from "react";
 import ShinyText from "./ShinyText";
 import InfiniteMarqueeEffect from "./InfinityMarqueeEffect";
 import PixelTransition from "@/animations/ImageAnimations/ImagePixalTransition";
+import TextReveal from "@/animations/TextAnimations/TextRevel";
+import ScrollTextReveal from "./ScrollTextReveal";
 
 const AboutDescription = () => {
   const services = [
@@ -19,22 +21,27 @@ const AboutDescription = () => {
         {/* Text Content Section */}
         <div className="intro-desc flex flex-col pt-6 sm:pt-10 px-4 sm:px-6 md:px-8 lg:px-12 w-full lg:w-1/2">
           <div className="name">
-            <h1 className="pb-8 sm:pb-10 md:pb-12 text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[7vw] leading-[11vw] sm:leading-[9vw] md:leading-[7vw] lg:leading-[6vw]">
-              Meet Ansh
-            </h1>
-            <p className="w-full max-w-[600px] text-sm sm:text-base md:text-lg leading-relaxed">
-              First of all, thank you for giving me this opportunity to
-              introduce myself. My name is Ansh Chauhan. I am from India. I am a
-              Full-Stack Developer with strong skills in HTML, CSS, JavaScript,
-              React.js, Next.js, Node.js, Express.js, MongoDB, SQL, and UI/UX
-              tools like Figma. I’m a self-motivated and hardworking person with
-              good communication skills. I learn quickly and adapt easily to new
-              technologies. My short-term goal is to work in a reputed
-              organization where I can refine my skills and contribute to
-              meaningful projects. My long-term goal is to achieve a responsible
-              position in the tech industry and help the company grow while
-              growing myself as well. That’s all about me. Thank you very much.
-            </p>
+            <ScrollTextReveal triggerPercent={75} stagger={2}>
+              <h1 className="pb-8 sm:pb-10 md:pb-12 text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[7vw] leading-[11vw] sm:leading-[9vw] md:leading-[7vw] lg:leading-[6vw]">
+                Meet Ansh
+              </h1>
+            </ScrollTextReveal>
+            <ScrollTextReveal stagger={2} triggerPercent={60}>
+              <p className="w-full max-w-[600px] text-sm sm:text-base md:text-lg leading-relaxed">
+                First of all, thank you for giving me this opportunity to
+                introduce myself. My name is Ansh Chauhan. I am from India. I am
+                a Full-Stack Developer with strong skills in HTML, CSS,
+                JavaScript, React.js, Next.js, Node.js, Express.js, MongoDB,
+                SQL, and UI/UX tools like Figma. I’m a self-motivated and
+                hardworking person with good communication skills. I learn
+                quickly and adapt easily to new technologies. My short-term goal
+                is to work in a reputed organization where I can refine my
+                skills and contribute to meaningful projects. My long-term goal
+                is to achieve a responsible position in the tech industry and
+                help the company grow while growing myself as well. That’s all
+                about me. Thank you very much.
+              </p>
+            </ScrollTextReveal>
           </div>
 
           {/* Services Grid */}
@@ -44,7 +51,7 @@ const AboutDescription = () => {
                 key={index}
                 className="bg-black shadow shadow-gray-300/20 text-xs sm:text-sm md:text-base py-3 sm:py-3.5 px-2 rounded-lg flex items-center justify-center text-center"
               >
-                <ShinyText text={item.label} speed={3} />
+                  <ShinyText text={item.label} speed={3} />
               </li>
             ))}
           </div>

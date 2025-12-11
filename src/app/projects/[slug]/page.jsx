@@ -11,7 +11,7 @@ export default async function ProjectDetails({ params }) {
 
   return (
     <section data-section="/projects">
-      <div className="w-full min-h-screen py-20 px-10 flex justify-center bg-white">
+      <div className="w-full min-h-screen py-20 px-10 flex justify-center bg-white/10">
         {/* MAIN WRAPPER */}
         <div className="w-full max-w-[90vw]">
           {/* ================= HEADER (TITLE + SUBTEXT + BUTTON) ================= */}
@@ -26,9 +26,14 @@ export default async function ProjectDetails({ params }) {
 
           {/* LIVE PREVIEW BUTTON */}
           <div className="mt-8">
-            <button className="px-8 py-3 bg-black text-white rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.35)] hover:scale-[1.02] transition flex items-center gap-2 text-lg">
-              Live Preview ↗
-            </button>
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className=""
+            >
+              <AnimatedButton px="3%">Preview</AnimatedButton>
+            </a>
           </div>
 
           {/* ================= CLIENT / SERVICES / TIMELINE ================= */}
@@ -67,7 +72,7 @@ export default async function ProjectDetails({ params }) {
           {/* ================= DESCRIPTION ================= */}
           <div className="mt-14">
             <h2 className="text-2xl font-semibold text-black">Description</h2>
-            <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
+            <p className="text-gray-700 text-lg w-[90%] text-justify leading-relaxed whitespace-pre-line">
               {project.description}
             </p>
           </div>
@@ -95,7 +100,7 @@ export default async function ProjectDetails({ params }) {
                   <img
                     key={i}
                     src={img}
-                    className="rounded-xl w-full object-cover shadow-md"
+                    className="rounded-xl grayscale transition-all duration-500 hover:grayscale-0 w-full object-cover shadow-md hover:scale-95 cursor-pointer"
                   />
                 ))}
               </div>

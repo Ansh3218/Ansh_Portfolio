@@ -1,13 +1,16 @@
 "use client";
 import React from "react";
+import ScrollTextReveal from "./ScrollTextReveal";
 
 const Footer = () => {
   return (
     <footer className="w-full bg-white/85 flex flex-col">
       {/* BIG NAME */}
-      <div className="text-nowrap text-[22vw] leading-[24vw] font-bold font-[font] text-center max-md:text-[22vw] max-md:leading-[28vw] max-sm:text-[22vw] max-sm:leading-[22vw]">
-        MR ANSH
-      </div>
+      <ScrollTextReveal triggerPercent={70} stagger={2}>
+        <div className="text-nowrap text-[22vw] leading-[24vw] font-bold font-[font] text-center max-md:text-[22vw] max-md:leading-[28vw] max-sm:text-[22vw] max-sm:leading-[22vw]">
+          MR ANSH
+        </div>
+      </ScrollTextReveal>
 
       {/* FOOTER TEXT ROW */}
       <div className="flex justify-between items-center px-[2rem] py-6 text-lg font-[font] max-lg:px-[1.5rem] max-md:px-[1rem] max-sm:flex-row max-sm:gap-3 max-sm:text-base max-sm:py-5">
