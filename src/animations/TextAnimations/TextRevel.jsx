@@ -177,8 +177,11 @@ const TextReveal = ({
   }, [hoverEffect, textLineHeight]);
 
   return (
-    <div ref={containerRef}>
-      {Array.isArray(children) ? (
+    <div
+      ref={containerRef}
+      className="w-full flex justify-center items-center text-center"
+    >
+     {Array.isArray(children) ? (
         children.map((child, i) => (
           <div
             key={i}
