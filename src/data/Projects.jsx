@@ -1,5 +1,6 @@
 export const projects = [
   {
+    id: 1,
     slug: "ecommerce-website",
     name: "K72",
     shortDesc:
@@ -10,6 +11,7 @@ export const projects = [
     client: "No",
     services: "Frontend Development",
     timeline: "6 day",
+    year: "2025",
 
     technologies: ["React.js", "Tailwind.css", "Gsap", "Framer Motion"],
 
@@ -21,6 +23,7 @@ export const projects = [
   },
 
   {
+    id: 2,
     slug: "portfolio-redesign",
     name: "Portfolio Redesign",
     shortDesc: "A modern full-stack e-commerce platform.",
@@ -44,6 +47,7 @@ export const projects = [
     gallery: ["/images/Project/project2.avif", "/images/Project/project2.avif"],
   },
   {
+    id: 3,
     slug: "brand-identity",
     name: "Brand Identity",
     shortDesc: "A modern full-stack e-commerce platform.",

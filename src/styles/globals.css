@@ -118,6 +118,11 @@
   }
 }
 
+::selection {
+  background-color: #ffffff; /* black background */
+  color: rgb(0, 0, 0); /* white text */
+}
+
 /* All Scrollbar width hide */
 
 *::-webkit-scrollbar {

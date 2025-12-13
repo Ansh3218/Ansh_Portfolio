@@ -10,6 +10,7 @@ const TextReveal = ({
   hoverEffect = false,
   textHeight,
   textLineHeight,
+  parentSelector = null,
 }) => {
   const containerRef = useRef();
   const linesRef = useRef([]);
@@ -46,10 +47,19 @@ const TextReveal = ({
   }, [delay, stagger, duration]);
 
   // ⭐ Hover animation with COMPLETE CSS cloning
+  // ⭐ Hover animation WITH optional parent trigger
   useEffect(() => {
     if (!hoverEffect || !containerRef.current) return;
 
     const container = containerRef.current;
+
+    // ---> NEW: Find parent if parentSelector is provided
+    let hoverTarget = container;
+
+    if (parentSelector) {
+      const parent = container.closest(parentSelector);
+      if (parent) hoverTarget = parent;
+    }
 
     const handleMouseEnter = () => {
       linesRef.current.forEach((line) => {
@@ -60,62 +70,38 @@ const TextReveal = ({
 
         const h = parent.clientHeight;
 
-        // 👉 Check if duplicate already exists
+        // Create duplicate if not exists
         let duplicate = parent.querySelector(".duplicate-text");
-
-        // Agar nahi hai to create karo with COMPLETE cloning
         if (!duplicate) {
-          // ✅ Clone the entire element with all styles
           duplicate = line.cloneNode(true);
           duplicate.classList.add("duplicate-text");
 
-          // ✅ Get computed styles from original
-          const computedStyles = window.getComputedStyle(line);
+          const cs = window.getComputedStyle(line);
 
-          // ✅ Copy critical styles explicitly
           duplicate.style.position = "absolute";
           duplicate.style.left = "0";
-          duplicate.style.width = "100%";
           duplicate.style.top = `${h}px`;
-
-          // ✅ Preserve original styling
-          duplicate.style.fontSize = computedStyles.fontSize;
-          duplicate.style.fontWeight = computedStyles.fontWeight;
-          duplicate.style.fontFamily = computedStyles.fontFamily;
-          duplicate.style.color = computedStyles.color;
-          duplicate.style.letterSpacing = computedStyles.letterSpacing;
-          duplicate.style.textTransform = computedStyles.textTransform;
-          duplicate.style.lineHeight =
-            computedStyles.lineHeight || textLineHeight || "normal";
-
-          // ✅ Copy background gradients and effects
-          if (computedStyles.backgroundImage !== "none") {
-            duplicate.style.backgroundImage = computedStyles.backgroundImage;
-            duplicate.style.backgroundClip = computedStyles.backgroundClip;
-            duplicate.style.webkitBackgroundClip =
-              computedStyles.webkitBackgroundClip;
-            duplicate.style.webkitTextFillColor =
-              computedStyles.webkitTextFillColor;
-          }
+          duplicate.style.width = "100%";
+          duplicate.style.fontSize = cs.fontSize;
+          duplicate.style.fontWeight = cs.fontWeight;
+          duplicate.style.fontFamily = cs.fontFamily;
+          duplicate.style.color = cs.color;
+          duplicate.style.lineHeight = cs.lineHeight;
 
           parent.appendChild(duplicate);
         }
 
-        // 👉 Purane animations kill karo
         gsap.killTweensOf([line, duplicate]);
 
-        // 👉 Reset positions before new hover
         gsap.set(line, { y: 0 });
         gsap.set(duplicate, { y: h });
 
-        // Original line up
         gsap.to(line, {
           y: -h,
           duration: 0.45,
           ease: "power3.inOut",
         });
 
-        // Duplicate move through
         gsap.to(duplicate, {
           y: -h,
           duration: 0.55,
@@ -134,47 +120,33 @@ const TextReveal = ({
         const duplicate = parent.querySelector(".duplicate-text");
         const h = parent.clientHeight;
 
-        // 👉 Purane tweens clear karo
         gsap.killTweensOf([line, duplicate]);
 
-        // Line ko wapas original
         gsap.to(line, {
           y: 0,
           duration: 0.45,
           ease: "power3.inOut",
         });
 
-        // Duplicate ko neeche le jao & remove
         if (duplicate) {
           gsap.to(duplicate, {
             y: h,
             duration: 0.45,
             ease: "power3.inOut",
-            onComplete: () => {
-              duplicate.remove();
-            },
+            onComplete: () => duplicate.remove(),
           });
         }
       });
     };
 
-    container.addEventListener("mouseenter", handleMouseEnter);
-    container.addEventListener("mouseleave", handleMouseLeave);
+    hoverTarget.addEventListener("mouseenter", handleMouseEnter);
+    hoverTarget.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      container.removeEventListener("mouseenter", handleMouseEnter);
-      container.removeEventListener("mouseleave", handleMouseLeave);
-
-      // Cleanup: koi duplicate bach na jaye
-      linesRef.current.forEach((line) => {
-        if (!line) return;
-        const parent = line.parentElement;
-        if (!parent) return;
-        const duplicate = parent.querySelector(".duplicate-text");
-        if (duplicate) duplicate.remove();
-      });
+      hoverTarget.removeEventListener("mouseenter", handleMouseEnter);
+      hoverTarget.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [hoverEffect, textLineHeight]);
+  }, [hoverEffect, parentSelector]);
 
   return (
     <div ref={containerRef}>

@@ -51,7 +51,7 @@ const AboutDescription = () => {
                 key={index}
                 className="bg-black shadow shadow-gray-300/20 text-xs sm:text-sm md:text-base py-3 sm:py-3.5 px-2 rounded-lg flex items-center justify-center text-center"
               >
-                  <ShinyText text={item.label} speed={3} />
+                <ShinyText text={item.label} speed={3} />
               </li>
             ))}
           </div>
@@ -59,11 +59,14 @@ const AboutDescription = () => {
 
         {/* Image Section */}
         <div className="image w-full lg:w-1/2 h-auto flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-0">
-          <div className="w-full max-w-[400px] sm:max-w-[500px] md:max-w-[580px] lg:max-w-[620px] aspect-square">
+          <div className="w-full max-w-[400px] sm:max-w-[500px] md:max-w-[580px] lg:max-w-[620px] aspect-square relative">
+            <p className="absolute z-[4] text-[black] p-2 text-xl uppercase hidden max-lg:block  font-[poppins]">
+              Touch to see
+            </p>
             <PixelTransition
               firstContent={
                 <img
-                  src="/images/ansh.png"
+                  src="/images/ansh1.png"
                   alt="ansh"
                   className="w-full h-full object-contain rounded-xl object-center"
                 />
