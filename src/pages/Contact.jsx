@@ -8,11 +8,11 @@ import ScrollTextReveal from "@/components/ScrollTextReveal";
 export default function Contact() {
   return (
     <div className="min-h-screen bg-white/85 py-16 max-lg:py-14 max-md:py-10 max-sm:py-8">
-      <div className="w-full px-14 mx-auto font-[manrope medium] max-xl:px-10 max-lg:px-8 max-md:px-6 max-sm:px-4">
+      <div className="w-full px-14 mx-auto font-[manrope medium] max-xl:px-10 max-lg:px-8 max-md:px-6 max-sm:px-4 max-sm:pt-[5rem]">
         {/* Header Section */}
         <div className="mb-16 max-lg:mb-12 max-md:mb-10">
           <ScrollTextReveal triggerPercent={60} stagger={2}>
-            <h1 className="text-5xl md:text-6xl max-lg:text-7xl max-md:text-5xl max-sm:text-4xl mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl max-lg:text-7xl max-md:text-5xl max-sm:text-5xl mb-6 leading-tight">
               Get in touch
             </h1>
           </ScrollTextReveal>

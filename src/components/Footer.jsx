@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="w-full bg-white/85 flex flex-col">
       {/* BIG NAME */}
-      <ScrollTextReveal triggerPercent={70} stagger={2}>
+      <ScrollTextReveal triggerPercent={80} stagger={2}>
         <div className="text-nowrap text-[21vw] leading-[24vw] font-bold font-[font] text-center max-md:text-[22vw] max-md:leading-[28vw] max-sm:text-[22vw] max-sm:leading-[22vw]">
           MR ANSH
         </div>

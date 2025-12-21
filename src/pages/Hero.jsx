@@ -9,11 +9,11 @@ const Hero = () => {
         {/* <TextReveal> */}
         <div className="bg-black flex flex-col items-center text-center py-[2rem] w-screen max-sm:py-[15rem]">
           <TextReveal>
-            <p className="text-black bg-white">UNLOCK</p>
+            <p>UNLOCK</p>
           </TextReveal>
           <TextReveal>
             {" "}
-            <p className="text-black bg-white">YOUR</p>
+            <p>YOUR</p>
           </TextReveal>
           <TextReveal>
             <div className="flex items-end w-full">

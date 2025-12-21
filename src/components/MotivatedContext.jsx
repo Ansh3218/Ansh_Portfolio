@@ -7,11 +7,11 @@ export default function MotivatedContext() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-black/5 flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen bg-black/5 flex items-center justify-center max-sm:min-h-[80vh] overflow-hidden">
       {/* Main Content */}
       <div className="relative z-10 text-center px-6 max-w-6xl mx-auto font-[font]">
         {/* Heading */}
-        <h1 className="text-3xl max-md:text-4xl font-[font] text-[#c9c8c8] mb-6 leading-tight w-[90%] pl-[25vw] pt-[8vw] text-right">
+        <h1 className="text-3xl max-md:text-4xl font-[font] text-[#c9c8c8] mb-6 leading-tight w-[90%] pl-[25vw] pt-[8vw] text-right max-sm:text-2xl max-sm:w-full max-sm:pl-[0vw] max-sm:text-left">
           Transform Your Ideas Into Digital Reality Empowering innovation &nbsp;
           <span className="text-[#494949] bg-black">
             through cutting-edge solutions

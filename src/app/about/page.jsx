@@ -6,9 +6,6 @@ const page = () => {
   return (
     <>
       <section data-section="/about" className="min-h-screen bg-black/50">
-        {/* <div className="w-full p-10"> */}
-        {/* <h2 className="text-5xl text-gray-200">Intro</h2> */}
-        {/* </div> */}
         <MotivatedContext />
         <About />
         <Footer />
