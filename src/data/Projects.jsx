@@ -23,7 +23,7 @@ export const projects = [
   },
 
   {
-    id: 1,
+    id: 2,
     slug: "pj-talks",
     name: "PJ TALKS – Creative Portfolio",
 
@@ -70,15 +70,15 @@ export const projects = [
     id: 3,
     slug: "blog-management-system",
     name: "MERN Blog Application",
-
     shortDesc:
       "A full-stack blog application built using the MERN stack, where an admin can create, edit, and publish blogs, and users can read posts through a clean and responsive interface.",
-
     image: "/images/Project/b1.png",
+    live: "https://blog-app-five-henna.vercel.app/",
 
     client: "Personal Project",
     services: "Full Stack Blog Application",
     timeline: "3 Weeks",
+    year: "2025",
 
     showcaseImage: "/images/Project/project3.avif",
     showcaseComponent: "BlogShowcase",
