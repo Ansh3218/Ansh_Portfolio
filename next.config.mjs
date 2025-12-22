@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Remove the experimental.reactCompiler option
-};
+const nextConfig = {};
 
 export default nextConfig;
